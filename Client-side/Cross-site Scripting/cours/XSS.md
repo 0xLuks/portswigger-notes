@@ -9,7 +9,7 @@ Si l'utilisateur dispose d'accès privilégié sur l'application, l'attaquant es
 
 Une XSS consiste à manipuler un site web vulnérable dans le but de renvoyer du code javascript malveillant aux utilisateurs. Lorsque le code malveillant s'exécute dans le navigateur de la victime, l'attaque peut compromettre totalement son intéraction avec l'application.
 
-![[xss-work.svg]]
+![](https://github.com/0xLuks/portswigger-notes/blob/main/Client-side/Cross-site%20Scripting/img/xss-work.svg)
 # XSS - PoC
 
 Il est possible de confirmer ce type de vulnérabilité en injectant un payload qui amène votre propre navigateur à exécuter du JavaScript arbitraire. Depuis longtemps, il est d'usage d'utiliser la fonction `alert()`, car elle est courte, inoffensive et difficile à manquer lorsqu'elle est appelée avec succès.
