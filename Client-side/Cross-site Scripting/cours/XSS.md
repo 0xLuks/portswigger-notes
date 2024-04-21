@@ -5,11 +5,13 @@ Le Cross-site scripting (XSS) est une vulnérabilité de sécurité web qui perm
 Les vulnérabilités XSS permettent à un pirate de se faire passer pour l'utilisateur victime, d'effectuer toutes les actions que l'utilisateur est en mesure de réaliser et d'accéder à toutes ses données.
 
 Si l'utilisateur dispose d'accès privilégié sur l'application, l'attaquant est en mesure de prendre le contrôle total de toutes les fonctionnalités et données de l'application.
+
 # Comment ça fonctionne ?
 
 Une XSS consiste à manipuler un site web vulnérable dans le but de renvoyer du code javascript malveillant aux utilisateurs. Lorsque le code malveillant s'exécute dans le navigateur de la victime, l'attaque peut compromettre totalement son intéraction avec l'application.
 
 ![](https://github.com/0xLuks/portswigger-notes/blob/main/Client-side/Cross-site%20Scripting/img/xss-work.svg)
+
 # XSS - PoC
 
 Il est possible de confirmer ce type de vulnérabilité en injectant un payload qui amène votre propre navigateur à exécuter du JavaScript arbitraire. Depuis longtemps, il est d'usage d'utiliser la fonction `alert()`, car elle est courte, inoffensive et difficile à manquer lorsqu'elle est appelée avec succès.
@@ -17,12 +19,14 @@ Il est possible de confirmer ce type de vulnérabilité en injectant un payload 
 Cependant, il y a un petit problème avec Google Chrome, à partir de la version 92 (juillet 2021). Les iframes cross-origin ne peuvent pas appeler `alert()`. Dans ce cas, on peut utiliser la fonction `print()`.
 
 Plus de détails dans cet [article](https://portswigger.net/research/alert-is-dead-long-live-print).
+
 # Quels sont les types d'attaques XSS
 
 Il existe trois principaux types d'attaque XSS :
 - [XSS réfléchies](https://portswigger.net/web-security/cross-site-scripting#reflected-cross-site-scripting) où le script malveillant provient de la requête HTTP en cours ;
 - [XSS stockées](https://portswigger.net/web-security/cross-site-scripting#stored-cross-site-scripting) où le script malveillant provient de la base de données du site web ;
 - [XSS basé sur le DOM](https://portswigger.net/web-security/cross-site-scripting#dom-based-cross-site-scripting),  où la vulnérabilité dans le code client-side plutôt que dans le code côté serveur.
+
 ## Reflected XSS
 
 La vulnérabilité XSS réfléchie est la variété la plus simple de cross-site scripting.
@@ -45,6 +49,7 @@ https://insecure-website.com/status?message=<script>/*+Bad+stuff+here...+*/</scr
 ```
 
 Si l'utilisateur visite l'URL construit par l'attaquant, le script de l'attaquant s'exécute dans le navigateur de la victime, dans le contexte de la session de l'utilisateur avec l'application. Il est donc possible d'effectuer toute action et récupérer n'importe quelles données de l'utilisateur.
+
 ## Stored XSS
 
 La vulnérabilité XSS stockée (XSS persistente ou de second ordre) survient lorsqu'une application reçoit des données d'une source non fiable et inclut ces données dans ses réponses HTTP ultérieures d'une manière non sécurisée.
@@ -64,6 +69,7 @@ L'application n'effectue pas de traitement des données, de sorte qu'un pirate p
 ```html
 <p><script>/* Bad stuff here... */</script></p>
 ```
+
 ## DOM-based XSS
 
 Une XSS basé sur le DOM (DOM XSS) survient lorsqu'une application contient du JavaScript côté client qui traite des données provenant d'une source non fiable d'une manière non sécurisée, généralement en écrivant les données dans le DOM.
@@ -83,6 +89,7 @@ You searched for: <img src=1 onerror='/* Bad stuff here... */'>
 ```
 
 Dans un cas typique, le champ d'entrée serait rempli à partir d'une partie de la requête HTTP, telle qu'un paramètre de chaîne de requête URL, permettant à l'attaquant de lancer une attaque à partir d'une URL malveillante (exactement comme une XSS reflected).
+
 # Que faire avec une XSS ?
 
 - Usurper l'utilisateur victime ou se faire passer pour lui ;
@@ -91,9 +98,12 @@ Dans un cas typique, le champ d'entrée serait rempli à partir d'une partie de 
 - Capturer les informations d'identification de l'utilisateur ;
 - Effectuer une défiguration du site web ;
 - Injecter un trojan dans le site web.
+- 
 # Impact des vulnérabilités XSS
 
+# Sources
 
+- [portswigger](https://portswigger.net/web-security/cross-site-scripting)
 
 
 
