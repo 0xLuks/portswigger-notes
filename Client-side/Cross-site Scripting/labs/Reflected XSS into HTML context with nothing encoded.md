@@ -5,4 +5,4 @@ Le but de ce lab est de trouver une vulnérabilité XSS reflected dans la foncti
 
 Il suffit d'entrer `<script>alert();</script>` dans la fonction de recherche pour résoudre le lab.
 
-![[xss-reflechie.png]]
+![](https://github.com/0xLuks/portswigger-notes/blob/main/Client-side/Cross-site%20Scripting/img/xss-reflechie.png)
